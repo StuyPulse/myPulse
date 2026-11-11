@@ -275,8 +275,12 @@
         overflow: hidden;
     }
 
-    .battery-cells .cell-button {
+    .battery-cells .cell-hitbox {
+        display: block;
         width: 100%;
+    }
+
+    .battery-cells .cell-button {
         cursor: pointer;
     }
 
@@ -320,6 +324,14 @@
     @media (hover: hover) {
         .battery-cells:has(.cell:hover) .cell:not(:hover) {
             opacity: 0.45;
+        }
+
+        .battery-cells:has(.cell-hitbox:hover) .cell {
+            opacity: 0.45;
+        }
+
+        .battery-cells .cell-hitbox:hover .cell {
+            opacity: 1;
         }
     }
 

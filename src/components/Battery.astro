@@ -67,9 +67,16 @@ const ONE_ROW = 60
                         // the calendar is the keyboard way to pick a meeting, so these stay out of the tab order
                         if (selectable)
                             return (
-                                <button type="button" class="cell-button" tabindex="-1" data-select={cell.key}>
+                                <button type="button" class="cell-button cell-hitbox" tabindex="-1" data-select={cell.key}>
                                     {inner}
                                 </button>
+                            )
+
+                        if (decorative)
+                            return (
+                                <div class="cell-hitbox" aria-hidden="true">
+                                    {inner}
+                                </div>
                             )
 
                         return inner
@@ -90,7 +97,12 @@ const ONE_ROW = 60
         if (!detail) return
 
         battery.addEventListener("pointerover", (event) => {
-            const label = (event.target as Element).closest<HTMLElement>("[data-label]")?.dataset.label
+            const target = event.target as Element
+
+            const hitbox = target.closest<HTMLElement>(".cell-hitbox")
+            const label = hitbox
+                ? hitbox.querySelector<HTMLElement>("[data-label]")?.dataset.label
+                : target.closest<HTMLElement>("[data-label]")?.dataset.label
             if (!label) return
 
             detail.textContent = label
