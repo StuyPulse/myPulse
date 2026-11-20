@@ -265,6 +265,10 @@
         font-size: 0.9375rem;
     }
 
+    .battery-detail[aria-hidden="true"] {
+        visibility: hidden;
+    }
+
     .cell {
         display: block;
         position: relative;

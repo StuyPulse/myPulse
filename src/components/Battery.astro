@@ -87,7 +87,7 @@ const ONE_ROW = 60
             )
         }
     </div>
-    {!decorative && cells.length > 0 && <p class="battery-detail" data-battery-detail hidden />}
+    {!decorative && cells.length > 0 && <p class="battery-detail" aria-hidden="true" data-battery-detail>placeholder</p>}
 </div>
 
 <script>
@@ -106,11 +106,11 @@ const ONE_ROW = 60
             if (!label) return
 
             detail.textContent = label
-            detail.hidden = false
+            detail.setAttribute("aria-hidden", "false")
         })
 
         battery.addEventListener("pointerleave", () => {
-            detail.hidden = true
+            detail.setAttribute("aria-hidden", "true")
         })
     })
 
